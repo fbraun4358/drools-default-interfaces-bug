@@ -6,19 +6,19 @@ rule "Looking For Non-Default"
     when
         $class: ClassImplementingInterfaceWithDefaults( val: notDefaultString )
     then
-        System.out.println(val);
+        System.out.println("Looking For Non-Default: " + val);
 end
 
 rule "Looking For Default"
     when
         $class: ClassImplementingInterfaceWithDefaults( val: defaultString )
     then
-        System.out.println(val);
+        System.out.println("Looking For Default: " + val);
 end
 
 rule "Looking For Overwritten Default"
     when
         $class: ClassImplementingInterfaceWithDefaultsAndOverwritingDefault( val: defaultString )
     then
-        System.out.println(val);
+        System.out.println("Looking For Overwritten Default: " + val);
 end

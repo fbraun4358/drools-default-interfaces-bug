@@ -2,12 +2,15 @@ package com.sample;
 
 import java.util.List;
 
+import org.kie.api.KieBase;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
 import org.kie.api.builder.Message;
 import org.kie.api.builder.Message.Level;
 import org.kie.api.io.Resource;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 
 public class Sample {
 	
@@ -33,7 +36,18 @@ public class Sample {
 			}
 			
 		} else {
-			System.out.println("Success!");	
+			
+			KieContainer container = services.newKieContainer(
+					services.getRepository().getDefaultReleaseId());
+			
+			KieBase base = container.getKieBase();
+			
+			KieSession session = base.newKieSession();
+
+			session.insert(new ClassImplementingInterfaceWithDefaults());
+			session.insert(new ClassImplementingInterfaceWithDefaultsAndOverwritingDefault());
+			
+			session.fireAllRules();
 		}
 	}
 }
