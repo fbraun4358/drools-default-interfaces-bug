@@ -1,0 +1,1 @@
+# drools-default-interfaces-bug
