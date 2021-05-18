@@ -1,0 +1,24 @@
+package com.sample.rules
+
+import com.sample.*
+
+rule "Looking For Non-Default"
+    when
+        $class: ClassImplementingInterfaceWithDefaults( val: notDefaultString )
+    then
+        System.out.println(val);
+end
+
+rule "Looking For Default"
+    when
+        $class: ClassImplementingInterfaceWithDefaults( val: defaultString )
+    then
+        System.out.println(val);
+end
+
+rule "Looking For Overwritten Default"
+    when
+        $class: ClassImplementingInterfaceWithDefaultsAndOverwritingDefault( val: defaultString )
+    then
+        System.out.println(val);
+end
